@@ -1,0 +1,45 @@
+{% extends "index.htm" %}
+{% block content%}
+
+{% if error: %}
+<h2 style="color: red;">{{error}}</h2>
+{%endif%}
+
+
+    <h1>Login</h1>
+    <form action="{{ url_for('login') }}" method="POST">
+
+        <input type="text" id="email" name="email" ><br>
+        <input type="password" id="pwd" name="pwd"><br>
+        <button type="submit">Login</button>
+
+    </form>
+    
+    <h1>Singup</h1>
+
+    <form action="{{ url_for('singup') }}" method="POST">
+        <input type="text" id="user_name" name="user_name"><br>
+        <input type="email" id="email" name="email"><br>
+        <input type="password" id="password" name="password"><br>
+
+        <select id="statue" name="statue">
+            <option value="student">student</option>
+            <option value="teacher">teacher</option>
+        </select>
+
+        <select id="field"  name="field">
+            <option value="1bacS">1bacS</option>
+            <option value="1bacL">1bacL</option>
+            <option value="1bacECO">1bacECO</option>
+            <option value="2bacSMF">2bacSMF</option>
+            <option value="2bacSMA">2bacSMA</option>
+            <option value="2bacSVT">2bacSVT</option>
+            <option value="2bacPC">2bacPC</option>
+            <option value="2bacL">2bacL</option>
+            <option value="2bacECO">2bacECO</option>
+          </select><br>
+
+        <button type="submit">Singup</button>
+    </form>
+
+{%endblock%}
