@@ -117,10 +117,5 @@ def upload():
     else:
         return render_template('upload.htm')
 
-def write_file(data, filename):
-    with open(filename, 'wb') as file:
-        file.write(data)
-
-
 if __name__ == '__main__':
     app.run(debug=True)    
