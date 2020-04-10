@@ -28,7 +28,7 @@
             <div class="card-body">
               <h5 class="card-title">{{cours[0]}}</h5>
               <p class="card-text">by: {{cours[1]}}</p>
-              <a href="#" class="btn btn-primary">Downlowd</a>
+              <a href="{{url_for('download', filename=cours[2])}}" class="btn btn-primary">Downlowd</a>
             </div>
           </div>
         {%endfor%}
