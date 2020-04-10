@@ -109,7 +109,7 @@ def upload():
         dir = app.config['UPLOAD_FOLDER']+ file.filename
 
         cmd  = "INSERT INTO posts (title, author, file, date, subject, field ) VALUES (%s, %s, %s, %s, %s, %s)"
-        post = (request.form["title"], session['user_name'], dir, x, request.form["subject"], request.form.getlist("field[]"))
+        post = (request.form["title"], session["user_name"], str(dir), x, str(request.form["subject"]), str(request.form.getlist("field[]")))
         crsr.execute(cmd, post)
         mydb.commit()
 
