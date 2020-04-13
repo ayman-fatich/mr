@@ -16,26 +16,29 @@ app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
 
 mydb = mysql.connector.connect(
-	host = "localhost",
-	user = "root",
-	passwd = "AYfaof26..@",
-	database = "moulay_rachid",
+    host="localhost",
+    user="root",
+    passwd="AYfaof26..@",
+    database="moulay_rachid",
 )
 crsr = mydb.cursor()
 
+
 @app.route('/')
 def home():
-    if 'user_name' in  session:
-        
+    if 'user_name' in session:
+
         return render_template('index.htm', uname=session['user_name'])
     else:
         return redirect(url_for('login'))
 
-@app.route('/login', methods = ['GET', 'POST'])
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %request.form['email'])
+        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %
+                     request.form['email'])
         user = crsr.fetchall()
         if user:
             user = user[0]
@@ -47,25 +50,27 @@ def login():
                 return redirect(url_for('home'))
             else:
                 error = "Mot de pass incorrect"
-                return render_template('login.htm', error= error)
+                return render_template('login.htm', error=error)
         else:
             error = "utilisateur introuvable"
-            return render_template('login.htm', error= error)
+            return render_template('login.htm', error=error)
 
     else:
-        return render_template('login.htm', error= error)
+        return render_template('login.htm', error=error)
+
 
 @app.route('/logout')
 def logout():
-   session.clear()
-   return redirect(url_for('login'))
+    session.clear()
+    return redirect(url_for('login'))
 
 
 @app.route('/singup', methods=['GET', 'POST'])
 def singup():
-    if request.method =='POST':
+    if request.method == 'POST':
         error = None
-        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %request.form['email'])
+        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %
+                     request.form['email'])
         user = crsr.fetchall()
         if user:
             error = "l'utilisateur existe deja"
@@ -73,7 +78,8 @@ def singup():
         else:
             cmd = "INSERT INTO users (name, email, password, statue, field) VALUES (%s, %s, %s, %s, %s)"
             password = generate_password_hash(request.form['password'])
-            nuser = (request.form['user_name'], request.form['email'], password, request.form['statue'], request.form['field'])
+            nuser = (request.form['user_name'], request.form['email'],
+                     password, request.form['statue'], request.form['field'])
             crsr.execute(cmd, nuser)
             mydb.commit()
             session['user_name'] = request.form['user_name']
@@ -81,8 +87,9 @@ def singup():
             session['field'] = request.form['field']
             return redirect(url_for('home'))
 
-    else:    
+    else:
         return render_template('login.htm')
+
 
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
@@ -90,15 +97,18 @@ def courses():
         if session['statue'] == 'student':
             subject = request.form["subject"]
             field = session['field']
-            crsr.execute("SELECT * FROM posts WHERE subject =  '{}' and field LIKE '%{}%' ".format(subject, field) )
+            crsr.execute(
+                "SELECT * FROM posts WHERE subject =  '{}' and field LIKE '%{}%' ".format(subject, field))
             courses = crsr.fetchall()
         else:
             subject = request.form["subject"]
-            crsr.execute("SELECT * FROM posts WHERE subject =  '{}'".format(subject))
+            crsr.execute(
+                "SELECT * FROM posts WHERE subject =  '{}'".format(subject))
             courses = crsr.fetchall()
-        
+
         return render_template('courses.htm', courses=courses)
     return render_template('courses.htm')
+
 
 @app.route('/upload', methods=["GET", "POST"])
 def upload():
@@ -109,8 +119,9 @@ def upload():
 
         dir = file.filename
 
-        cmd  = "INSERT INTO posts (title, author, file, date, subject, field ) VALUES (%s, %s, %s, %s, %s, %s)"
-        post = (request.form["title"], session["user_name"], str(dir), x, str(request.form["subject"]), str(request.form.getlist("field[]")))
+        cmd = "INSERT INTO posts (title, author, file, date, subject, field ) VALUES (%s, %s, %s, %s, %s, %s)"
+        post = (request.form["title"], session["user_name"], str(dir), x, str(
+            request.form["subject"]), str(request.form.getlist("field[]")))
         crsr.execute(cmd, post)
         mydb.commit()
 
@@ -118,7 +129,9 @@ def upload():
     else:
         return render_template('upload.htm')
 
+
 app.config["CLIENT_IMAGES"] = "/home/ayman/dev/mr/static/files"
+
 
 @app.route('/download/<filename>')
 def download(filename):
@@ -127,5 +140,6 @@ def download(filename):
     except FileNotFoundError:
         abort(404)
 
+
 if __name__ == '__main__':
-    app.run(debug=True)    
+    app.run(debug=True)

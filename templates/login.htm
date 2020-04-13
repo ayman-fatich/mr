@@ -1,46 +1,127 @@
-{% extends "index.htm" %}
-{% block content%}
-    <br><br><br><br>
-{% if error: %}
-<h2 style="color: red;">{{error}}</h2>
-{%endif%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../static/css/login/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../static/css/login/css/style.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        {% if error: %}
+        <h2 style="color: red;">{{error}}</h2>
+        {%endif%}
 
 
-    <h1>Login</h1>
-    <form action="{{ url_for('login') }}" method="POST">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form action="{{ url_for('singup') }}" method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="user_name" id="name" placeholder="Your Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="statue" name="statue">
+                                    <option value="student">student</option>
+                                    <option value="teacher">teacher</option>
+                                </select>
+                                <label for="statue" class="label-agree-term">Statue</label>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" id="field" name="field[]">
+                                    <optgroup label="1 BAC"></optgroup>
+                                    <option value="1BSMF">1BSMF</option>
+                                    <option value="1BSMA">1BSMA</option>
+                                    <option value="1BSEX">1BSEX</option>
+                                    <optgroup label="2 BAC"></optgroup>
+                                    <option value="2BSMF">2BSMF</option>
+                                    <option value="2BSMA">2BSMA</option>
+                                    <option value="2BSEX">2BSEX</option>
+                                    <option value="ALL">teacher</option>
+                                </select>
+                                <label for="field" class="label-agree-term">Branche</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="../static/css/login/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <input type="text" id="email" name="email" ><br>
-        <input type="password" id="pwd" name="pwd"><br>
-        <button type="submit">Login</button>
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="../static/css/login/images/signin-image.jpg" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">Create an account</a>
+                    </div>
 
-    </form>
-    
-    <h1>Singup</h1>
+                    <div classSign Up Form by Colorlib="signin-form">
+                        <h2 class="form-title">Login</h2>
+                        <form action="{{ url_for('login') }}" method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="email" name="email" id="your_name" placeholder="Your Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pwd" id="your_pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <form action="{{ url_for('singup') }}" method="POST">
-        <input type="text" id="user_name" name="user_name"><br>
-        <input type="email" id="email" name="email"><br>
-        <input type="password" id="password" name="password"><br>
+    </div>
 
-        <select id="statue" name="statue">
-            <option value="student">student</option>
-            <option value="teacher">teacher</option>
-        </select>
+    <!-- JS -->
+    <script src="../static/css/login/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/css/login/js/main.js"></script>
+</body>
 
-        <select id="field"  name="field">
-            <optgroup label="1 BAC" ></optgroup>
-                <option value="1BSMF">1BSMF</option>
-                <option value="1BSMA">1BSMA</option>
-                <option value="1BSEX">1BSEX</option>
-              <optgroup label="2 BAC" ></optgroup>
-                <option value="2BSMF">2BSMF</option>
-                <option value="2BSMA">2BSMA</option>
-                <option value="2BSEX">2BSEX</option>
-                <option value="ALL">ALL</option>
-
-          </select><br>
-
-        <button type="submit">Singup</button>
-    </form>
-
-{%endblock%}
+</html>

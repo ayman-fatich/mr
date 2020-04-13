@@ -1,36 +1,44 @@
 {% extends "index.htm" %}
+{%block style%}
+<link rel="stylesheet" href="../static/css/courses.css">
+{%endblock%}
 {% block content%}
 <br><br><br><br>
-    <h1>courses</h1>
-    <form action="{{url_for('courses')}}" method="POST">
+<form action="{{url_for('courses')}}" method="POST" style="padding: 2em; text-align: center;">
+  <h1>Cours</h1>
+  <select class="custom-select" name="subject">
+    <option selected>Choisissez une matière</option>
+    <option value="fr">Français</option>
+    <option value="ar">Arabe</option>
+    <option value="hg">HG</option>
+    <option value="ei">EI</option>
+    <option value="mt">Maths</option>
+    <option value="pc">PC</option>
+    <option value="svt">SVT</option>
+    <option value="ph">Philo</option>
+    <option value="en">Eng</option>
+  </select>
+  <br> <br>
+  <button type="submit">Search</button>
 
-        <label for="subject">Selectionez une matière</label>
-        <select id="subject"  name="subject">
-            <option value="fr">Français</option>
-            <option value="ar">Arabe</option>
-            <option value="hg">HG</option>
-            <option value="ei">EI</option>
-            <option value="mt">Maths</option>
-            <option value="pc">PC</option>
-            <option value="svt">SVT</option>
-            <option value="ph">Philo</option>
-            <option value="en">Eng</option>
-          </select>
-          <button type="submit">Search</button>
 
-        
-    </form>
+</form>
 
-    {%if courses != None:%}
-        {%for cours in courses%}
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="../static/school.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{cours[0]}}</h5>
-              <p class="card-text">by: {{cours[1]}}</p>
-              <a href="{{url_for('download', filename=cours[2])}}" class="btn btn-primary">Downlowd</a>
-            </div>
-          </div>
-        {%endfor%}
-    {%endif%}
+{%if courses != None:%}
+<hr>
+<div class="flex-container">
+  {%for cours in courses%}
+  <div class="card">
+    <img class="card-img-top" src="../static/imgs/school.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{cours[0]}}</h5>
+      <h6 class="card-text">by: {{cours[1]}}</h6>
+
+      <a href="{{url_for('download', filename=cours[2])}}" class="btn btn-primary">Downlowd</a>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+{%endif%}
+
 {%endblock%}

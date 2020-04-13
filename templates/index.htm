@@ -1,86 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    {%block style%}
-    <link rel="stylesheet" href="../static/home.css" >
-    {%endblock%}
-    <title>Moulay rachid</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#"><img src="../static/logomr.png" style="max-height: 40px;"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('home') }}">Home
-                      <span class="sr-only">(current)</span>
-                    </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('courses') }}">Courses</a>
-              </li>
-              {%if session['statue']=='teacher': %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('upload') }}">Upload</a>
-              </li>
-              {%endif%}
-              {%if 'user_name' in  session: %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-              </li>
-              {%else%}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-              </li>
-              {%endif%}
-            </ul>
-          </div>
-        </div>
-      </nav>
 
-    {% block content%}
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('../static/back2.jpg')">
-            <div class="carousel-caption d-none d-md-block">
-              <h2 class="display-4"></h2>
-              <p class="lead" style="color: darkolivegreen;">Official site of Moulay Rachid H.S</p>
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('../static/back1.jpg')">
-            <div class="carousel-caption d-none d-md-block">
-              <h2 class="display-4"></h2>
-              <p class="lead" style="color: darkolivegreen;">#Stay_At_Home</p>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;800&display=swap" rel="stylesheet"> 
+  {%block style%}
+  {%endblock%}
+  <link rel="stylesheet" href="../static/css/home.css">
+  <title>Moulay rachid</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{url_for('home')}}"><img src="../static/imgs/logomr.png"
+          style="max-height: 40px;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" style="color: white;" href="{{ url_for('home') }}">Home
+              <span class="sr-only">(current)</span>
             </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{{ url_for('courses') }}">Courses</a>
+          </li>
+          {%if session['statue']=='teacher': %}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{{ url_for('upload') }}">Upload</a>
+          </li>
+          {%endif%}
+          {%if 'user_name' in  session: %}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+          {%else%}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{{ url_for('login') }}">Login</a>
+          </li>
+          {%endif%}
+        </ul>
       </div>
-    {%endblock%}
+    </div>
+  </nav>
+
+  {% block content%}
+  
+  <main>
+    <div class="text">
+      <div class="content">
+        <h4>Moulay Rachid</h4>
+        <p style="color: cornsilk;">
+          Tous les cours en un seul click
+        </p>
+        <a href="{{url_for('courses')}}">Cours</a>
+      </div>
+    </div>
+
+    <div class="img">
+      <img src="../static/imgs/home.png">
+    </div>
+  </main>
+
+  <footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 bottom" style="background-color: rgba(200, 202, 204, 0.5); font-size: 0.8rem;">© 2020
+      Copyright:
+      <a href="https://www.facebook.com/ayman.fatichh/"> Ayman FATICH</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  {%endblock%}
 </body>
+
 </html>
