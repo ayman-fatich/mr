@@ -1,0 +1,62 @@
+
+.btnn{
+    background-color: #21D4FD;
+    border-radius: 0.5rem;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    box-shadow: -2px 3px rgba(0, 0, 0, 0.219);
+}
+
+.btnn:hover{
+    background-color: rgb(26, 177, 211);
+    box-shadow: -3px 4px rgba(0, 0, 0, 0.219);
+}
+
+.main{
+    margin-top: 9rem;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Baloo Thambi 2', cursive;
+}
+
+form{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    box-shadow: -1rem 1rem rgba(0, 0, 0, 0.219);
+    padding: 3rem;
+    border-radius: 5em;
+    text-align: center;
+    max-width: 50rem;
+    margin-bottom: 3rem;
+}
+
+form div {
+    margin-bottom: auto;
+    margin-top: auto;
+    
+}
+
+.iamg{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    
+}
+
+main img{
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 18rem;
+    width: 100%;
+    height: auto;
+    max-width: 30rem;
+    box-shadow: -1rem 1rem rgba(0, 0, 0, 0.219);
+}

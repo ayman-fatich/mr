@@ -81,11 +81,14 @@ main {
 }
 
 
-img {
+.immg {
   width: 100%;
   height: auto;
   
 } 
 
+.logo{
+  max-height: 40px;
+}
 
 
