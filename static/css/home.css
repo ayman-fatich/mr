@@ -20,6 +20,10 @@ nav ul li a:hover {
   text-shadow: -2px 3px rgba(0, 0, 0, 0.219);
 }
 
+nav ul li a:active {
+  color: rgb(153, 143, 131);
+}
+
 main {
   display: flex;
   flex-wrap: wrap;

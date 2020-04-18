@@ -9,7 +9,7 @@ import os
 x = datetime.datetime.now()
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '/home/ayman/dev/mr/static/files'
+app.config['UPLOAD_FOLDER'] = '/home/ayman/dev/app/static/files'
 
 
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
@@ -142,4 +142,4 @@ def download(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
+    app.run(host='127.0.0.1', port=8080, debug=True)
