@@ -32,7 +32,7 @@ def home():
 def login():
     error = None
     if request.method == 'POST':
-        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %
+        crsr.execute("SELECT * FROM users WHERE email =  '%s';" %
                      request.form['email'])
         user = crsr.fetchall()
         if user:
@@ -64,14 +64,14 @@ def logout():
 def singup():
     if request.method == 'POST':
         error = None
-        crsr.execute("SELECT * FROM users WHERE email =  '%s'" %
+        crsr.execute("SELECT * FROM users WHERE email =  '%s';" %
                      request.form['email'])
         user = crsr.fetchall()
         if user:
             error = "l'utilisateur existe deja"
             return render_template('login.htm', error=error)
         else:
-            cmd = "INSERT INTO users (name, email, password, statue, field) VALUES (%s, %s, %s, %s, %s)"
+            cmd = "INSERT INTO users (name, email, password, statue, field) VALUES (%s, %s, %s, %s, %s);"
             password = generate_password_hash(request.form['password'])
             nuser = (request.form['user_name'], request.form['email'],
                      password, request.form['statue'], request.form['field'])
@@ -93,7 +93,7 @@ def courses():
             subject = request.form["subject"]
             field = session['field']
             crsr.execute(
-                "SELECT * FROM posts WHERE subject =  '{}' and field LIKE '%{}%' ".format(subject, field))
+                "SELECT * FROM posts WHERE subject =  '{}' and field LIKE '%{}%'; ".format(subject, field))
             courses = crsr.fetchall()
         else:
             subject = request.form["subject"]
@@ -114,7 +114,7 @@ def upload():
 
         dir = file.filename
 
-        cmd = "INSERT INTO posts (title, author, file, date, subject, field ) VALUES (%s, %s, %s, %s, %s, %s)"
+        cmd = "INSERT INTO posts (title, author, file, date, subject, field ) VALUES (%s, %s, %s, %s, %s, %s);"
         post = (request.form["title"], session["user_name"], str(dir), x, str(
             request.form["subject"]), str(request.form.getlist("field[]")))
         crsr.execute(cmd, post)
@@ -137,4 +137,4 @@ def download(filename):
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run()
