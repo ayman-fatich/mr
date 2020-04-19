@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = '/home/ayman/dev/app/static/files'
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
 
-mydb = mysql.connector.connect(user="ayman@moulayrachid", password=ayfaof26.., host="moulayrachid.mysql.database.azure.com", port=3306, database="mr")
+mydb = mysql.connector.connect(user="ayman@moulayrachid", password='ayfaof26..', host="moulayrachid.mysql.database.azure.com", port=3306, database="mr")
 crsr = mydb.cursor()
 
 
