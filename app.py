@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = './static/files'
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
 
-mydb = mysql.connector.connect(user="ayman@moulayrachid", password='ayfaof26..', host="moulayrachid.mysql.database.azure.com", port=3306, database="mr")
+mydb = mysql.connector.connect(user="ayman.fatich.r@gmail.com", password='ayfaof26..', host="postgres://ferhnlnmnudxab:67637cdcdf93358671811ddd438006a15934d9ca22e13265e69674bd11798aff@ec2-54-217-204-34.eu-west-1.compute.amazonaws.com:5432/d4fj74g22leib6", database="DATABASE_URL")
 crsr = mydb.cursor()
 
 
