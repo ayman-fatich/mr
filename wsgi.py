@@ -15,8 +15,8 @@ app.config['UPLOAD_FOLDER'] = './static/files'
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
 
-mydb = mysql.connector.connect(user="mbhfcwbasypvsz", password='4e602d81da9a8fce56bf55264b9ffd2bf4624c90986473e20b7406bfada49b63', host="ec2-18-215-99-63.compute-1.amazonaws.com",port="5432", database="d9r9ati1p8f3da")
-crsr = mydb.cursor()
+#mydb = mysql.connector.connect(user="mbhfcwbasypvsz", password='4e602d81da9a8fce56bf55264b9ffd2bf4624c90986473e20b7406bfada49b63', host="ec2-18-215-99-63.compute-1.amazonaws.com",port="5432", database="d9r9ati1p8f3da")
+#crsr = mydb.cursor()
 
 
 @app.route('/')
@@ -138,4 +138,4 @@ def download(filename):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(port="5000")
