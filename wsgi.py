@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = './static/files'
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
 
-mydb = mysql.connector.connect(user="ayman", password='ayfaof26..', host="35.188.102.7",port="3306", database="moulay_rachid")
+mydb = mysql.connector.connect(user="bbcfca50b39d8b", password='04b37381', host="us-cdbr-east-06.cleardb.net",port="3306", database="heroku_b11ddfefff9990e")
 crsr = mydb.cursor()
 
 
@@ -24,7 +24,7 @@ def home():
     if 'user_name' in session:
 
         return render_template('index.htm', uname=session['user_name'])
-    else:
+    else:bbcfca50b39d8b
         return redirect(url_for('login'))
 
 
