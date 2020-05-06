@@ -71,10 +71,9 @@ def singup():
             error = "l'utilisateur existe deja"
             return render_template('login.htm', error=error)
         else:
-            cmd = "INSERT INTO users (name, email, password, statue, field) VALUES (%s, %s, %s, %s, %s);"
+            cmd = "INSERT INTO `users` VALUES (name, email, password, statue, field) VALUES (%s, %s, %s, %s, %s);"
             password = generate_password_hash(request.form['password'])
-            nuser = (request.form['user_name'], request.form['email'],
-                     password, request.form['statue'], request.form['field'])
+            nuser = (request.form['user_name'], request.form['email'],password, request.form['statue'], request.form['field'])
             crsr.execute(cmd, nuser)
             mydb.commit()
             session['user_name'] = request.form['user_name']
