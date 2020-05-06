@@ -18,7 +18,7 @@ jobs:
     - name: Set up Python version
       uses: actions/setup-python@v1
       with:
-        python-version: '3.6'
+        python-version: '3.7'
 
     - name: Build using AppService-Build
       uses: azure/appservice-build@v1
@@ -30,4 +30,4 @@ jobs:
       with:
         app-name: 'moulayrachid'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b1af0ddde2194719ad3be3a0351e63a8 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_daef49d4a09946548aa5b173ae8e03f4 }}
