@@ -24,7 +24,7 @@ def home():
     if 'user_name' in session:
 
         return render_template('index.htm', uname=session['user_name'])
-    else:bbcfca50b39d8b
+    else:
         return redirect(url_for('login'))
 
 
