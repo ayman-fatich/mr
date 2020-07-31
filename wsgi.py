@@ -5,33 +5,39 @@ from io import BytesIO
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
-
+#take time
 x = datetime.datetime.now()
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/files'
 
-
+#i know i should  from github it but who cares
 app.secret_key = b'_5#y2L"F4Q8z@##HG]/'
 
-
+#i should not publish that neither lol :)
 mydb = mysql.connector.connect(user="bbcfca50b39d8b", password='04b37381', host="us-cdbr-east-06.cleardb.net",port="3306", database="heroku_b11ddfefff9990e")
 crsr = mydb.cursor()
 
+#well let's get some fun boys eyyy ! 😁
 
+#the home page function
 @app.route('/')
 def home():
     if 'user_name' in session:
-
+    
         return render_template('index.htm', uname=session['user_name'])
+    
     else:
-        return redirect(url_for('login'))
+        return render_template('index.htm')
 
 
+
+#well i will not tell you what function everytime is neither, you can read it yourself
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
+        #it takes user's email and check if he/she is in the db or not
         crsr.execute("SELECT * FROM users WHERE email =  '%s';" %
                      request.form['email'])
         user = crsr.fetchall()
@@ -39,20 +45,23 @@ def login():
             user = user[0]
             valid = check_password_hash(user[2], request.form['pwd'])
             if valid:
+                #we found it yeey
                 session['user_name'] = user[0]
                 session['statue'] = user[3]
                 session['field'] = user[4]
                 return redirect(url_for('home'))
             else:
+                # :(
                 error = "Mot de pass incorrect"
                 return render_template('login.htm', error=error)
         else:
             error = "utilisateur introuvable"
             return render_template('login.htm', error=error)
-
+    
     else:
         return render_template('login.htm', error=error)
 
+#i'm tired from commenting it
 
 @app.route('/logout')
 def logout():
@@ -88,7 +97,7 @@ def singup():
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
     if request.method == 'POST':
-        if session['statue'] == 'student':
+        if 'statue' in session:
             subject = request.form["subject"]
             field = session['field']
             crsr.execute(
@@ -96,8 +105,9 @@ def courses():
             courses = crsr.fetchall()
         else:
             subject = request.form["subject"]
+            field = request.form["field"]
             crsr.execute(
-                "SELECT * FROM posts WHERE subject =  '{}'".format(subject))
+                "SELECT * FROM posts WHERE subject =  '{}' and field LIKE '%{}%'; ".format(subject, field))
             courses = crsr.fetchall()
 
         return render_template('courses.htm', courses=courses)
@@ -136,5 +146,5 @@ def download(filename):
 
 
 if __name__ == '__main__':
-    app.debug = True
+    app.run(debug=True)
     app.run(port="5000")

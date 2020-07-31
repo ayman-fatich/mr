@@ -6,6 +6,9 @@
 <br><br><br><br>
 <form action="{{url_for('courses')}}" method="POST" style="padding: 2em; text-align: center;">
   <h1>Cours</h1>
+
+  <!--user chos the subject he wants-->
+
   <select class="custom-select" name="subject">
     <option selected>Choisissez une matière</option>
     <option value="fr">Français</option>
@@ -19,6 +22,26 @@
     <option value="en">Eng</option>
   </select>
   <br> <br>
+
+  {%if session['statue'] != 'student':%}
+  <!--user chos the field he wants-->
+
+  <select class="custom-select" name="field">
+    <option selected>Choisissez une Branche</option>
+
+    <optgroup label="1 BAC"></optgroup>
+    <option value="1BSMF">1BSMF</option>
+    <option value="1BSMA">1BSMA</option>
+    <option value="1BSEX">1BSEX</option>
+    <optgroup label="2 BAC"></optgroup>
+    <option value="2BSMF">2BSMF</option>
+    <option value="2BSMA">2BSMA</option>
+    <option value="2BSEX">2BSEX</option>
+    <option value="ALL">teacher</option>
+  </select>
+  <br> <br>
+  {%endif%}
+
   <button type="submit">Search</button>
 
 
